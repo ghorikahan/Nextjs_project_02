@@ -18,6 +18,7 @@ import { notFound } from "next/navigation";
 // ── Root Continental listing (no slug) ─────────────────────────────────────────
 function CuisinesRoot() {
   const roots = cuisineList.filter(c => !c.parentPath);
+
   return (
     <div className="cuisine-page">
       {/* Top bar */}
@@ -27,36 +28,54 @@ function CuisinesRoot() {
           <span className="bc-sep">/</span>
           <span className="bc-current">Cuisines</span>
         </nav>
-        <div className="path-badge">
-          <span className="badge-dot" />
-          <code>/cuisines</code>
+        <div className="cuisine-stat-pill">
+          <span className="stat-pill-dot" />
+          <span>{roots.length} Continental Roots • {cuisineList.length} Regional Domains</span>
         </div>
       </div>
 
-      {/* Hero */}
-      <div className="cuisine-hero-card">
-        <div className="cuisine-hero-bg">
-          <Image
-            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80"
-            alt="World Culinary Traditions"
-            fill
-            priority
-            style={{ objectFit: "cover" }}
-            sizes="1100px"
-            className="hero-backdrop-img"
-          />
-          <div className="cuisine-hero-backdrop-gradient" />
-        </div>
-
-        <div className="hero-content">
+      {/* Light Editorial Culinary Hero */}
+      <div className="cuisine-hero-editorial">
+        <div className="cuisine-hero-text-col">
           <div className="domain-badge-row">
-            <span className="domain-badge">GLOBAL GASTRONOMY</span>
-            <span className="formula-count">{cuisineList.length} Catalogued Regional Domains</span>
+            <span className="domain-badge">✦ GLOBAL GASTRONOMY</span>
+            <span className="formula-count">{cuisineList.length} Regional Traditions</span>
           </div>
           <h1>World Culinary Traditions</h1>
           <p className="cuisine-desc">
             Explore authentic flavor architectures, foundational pantry ratios, and regional cooking techniques across world continents and specialized culinary heritage.
           </p>
+          <div className="hero-meta-strip">
+            <div className="hero-stat-item">
+              <span className="stat-num">{roots.length}</span>
+              <span className="stat-lbl">Continents</span>
+            </div>
+            <div className="stat-divider" />
+            <div className="hero-stat-item">
+              <span className="stat-num">{cuisineList.length}</span>
+              <span className="stat-lbl">Regional Traditions</span>
+            </div>
+            <div className="stat-divider" />
+            <div className="hero-stat-item">
+              <span className="stat-num">180+</span>
+              <span className="stat-lbl">Tested Formulas</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="cuisine-hero-visual-col">
+          <div className="hero-visual-frame">
+            <Image
+              src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=85"
+              alt="World Culinary Traditions"
+              fill
+              priority
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 900px) 100vw, 420px"
+              className="hero-visual-img"
+            />
+            <span className="hero-visual-pill">Gastronomic Atlas</span>
+          </div>
         </div>
       </div>
 
@@ -65,7 +84,7 @@ function CuisinesRoot() {
         <div className="sub-traditions-header">
           <div>
             <h2>Continental Classifications</h2>
-            <p className="sub-header-desc">Foundational culinary roots organized by continental origin.</p>
+            <p className="sub-header-desc">Foundational culinary roots organized by continental origin and gastronomic heritage.</p>
           </div>
           <span className="active-count">{roots.length} Continental Domains</span>
         </div>
@@ -83,9 +102,8 @@ function CuisinesRoot() {
                     sizes="(max-width: 768px) 100vw, 360px"
                     className="tradition-card-img"
                   />
-                  <div className="tradition-card-overlay" />
                   <span className="recipe-count-badge">
-                    <span className="count-dot" /> {c.recipeCount} RECIPES
+                    <span className="count-dot" /> {c.recipeCount} Recipes
                   </span>
                   <span className="tradition-arrow">↗</span>
                 </div>
@@ -94,7 +112,9 @@ function CuisinesRoot() {
                   <h3>{c.label}</h3>
                   <p>{c.description}</p>
                   <div className="tradition-card-foot">
-                    {c.focus ? <span className="tradition-focus">{c.focus}</span> : <span className="tradition-focus">Foundational Domain</span>}
+                    <span className="tradition-focus">
+                      {c.focus ? c.focus : "Foundational Larder"}
+                    </span>
                     <span className="explore-link">Explore Domain →</span>
                   </div>
                 </div>
@@ -109,6 +129,8 @@ function CuisinesRoot() {
 
 // ── Featured Recipe Card Component ────────────────────────────────────────────
 function FeaturedRecipeCard({ recipe, label }: { recipe: Recipe; label: string }) {
+  const diffClass = recipe.difficulty === "Easy" ? "diff-easy" : recipe.difficulty === "Medium" ? "diff-med" : "diff-hard";
+
   return (
     <Link href={`/recipes/${recipe.slug}`} className="feat-card-link">
       <div className="feat-card">
@@ -121,24 +143,24 @@ function FeaturedRecipeCard({ recipe, label }: { recipe: Recipe; label: string }
             sizes="(max-width: 768px) 100vw, 360px"
             className="feat-img"
           />
-          <div className="feat-card-img-overlay" />
           <span className="feat-card-tag">{label}</span>
-          <span className="feat-card-difficulty">{recipe.difficulty}</span>
+          <span className={`feat-card-difficulty ${diffClass}`}>{recipe.difficulty}</span>
         </div>
         <div className="feat-card-body">
           <div className="feat-card-meta">
-            <span className="feat-cuisine-badge">{recipe.cuisine.toUpperCase()} TRADITION</span>
+            <span className="feat-cuisine-badge">{recipe.cuisine.toUpperCase()}</span>
             <span className="meta-divider">•</span>
-            <span className="feat-time">⏱ {recipe.time} MIN</span>
+            <span className="feat-time">⏱ {recipe.time} min</span>
           </div>
           <h3>{recipe.title}</h3>
           <p>{recipe.description}</p>
           <div className="feat-card-foot">
             <div className="feat-card-stats">
-              <span>👥 {recipe.servings} Servings</span>
+              <span>{recipe.servings} Servings</span>
+              <span>•</span>
               <span>{recipe.ingredients.length} Ingredients</span>
             </div>
-            <span className="feat-view">View Formula →</span>
+            <span className="feat-view">View Recipe →</span>
           </div>
         </div>
       </div>
@@ -152,7 +174,7 @@ function CuisineDetail({ entry, slugPath }: { entry: CuisineEntry; slugPath: str
   const ancestors = getAncestors(entry.fullPath);
   const featured = getFeaturedRecipes(entry);
 
-  const featLabels = ["Signature Formula", "Essential Technique", "Pantry Classic", "Lab Highlight"];
+  const featLabels = ["Signature Dish", "Essential Technique", "Pantry Classic", "Kitchen Highlight"];
 
   const breadcrumbParts = [
     { label: "Cuisines", href: "/cuisines" },
@@ -164,7 +186,7 @@ function CuisineDetail({ entry, slugPath }: { entry: CuisineEntry; slugPath: str
 
   return (
     <div className="cuisine-page">
-      {/* Top bar with breadcrumb and routing pill */}
+      {/* Top bar with breadcrumb and clean category count */}
       <div className="cuisine-top-bar">
         <nav className="breadcrumb">
           {breadcrumbParts.map((part, i) => (
@@ -178,51 +200,54 @@ function CuisineDetail({ entry, slugPath }: { entry: CuisineEntry; slugPath: str
             </span>
           ))}
         </nav>
-        <div className="path-badge">
-          <span className="badge-dot" />
-          <code>/cuisines/{slugPath}</code>
+        <div className="cuisine-stat-pill">
+          <span className="stat-pill-dot" />
+          <span>{entry.recipeCount} Catalogued Recipes</span>
         </div>
       </div>
 
-      {/* Hero with rich culinary backdrop */}
-      <div className="cuisine-hero-card">
-        <div className="cuisine-hero-bg">
-          <Image
-            src={entry.image}
-            alt={entry.label}
-            fill
-            priority
-            style={{ objectFit: "cover" }}
-            sizes="1100px"
-            className="hero-backdrop-img"
-          />
-          <div className="cuisine-hero-backdrop-gradient" />
-        </div>
-
-        <div className="hero-content">
+      {/* Light Editorial Culinary Hero */}
+      <div className="cuisine-hero-editorial">
+        <div className="cuisine-hero-text-col">
           <div className="domain-badge-row">
-            <span className="domain-badge">{entry.tag}</span>
+            <span className="domain-badge">✦ {entry.tag}</span>
             <span className="formula-count">
-              <span className="count-num">{entry.recipeCount}</span> Catalogued Formulas
+              <span className="count-num">{entry.recipeCount}</span> Tested Formulas
             </span>
           </div>
 
           <div className="cuisine-title-row">
             <h1>{entry.label}</h1>
-            <div className="parent-nav-btns">
-              {parentEntry && (
-                <Link href={`/cuisines/${parentEntry.fullPath}`} className="parent-btn">
-                  <span className="btn-icon">↑</span>
-                  <span>Parent: {parentEntry.label}</span>
-                </Link>
-              )}
-              <Link href="/cuisines" className="root-btn">
-                <span>Root: All Cuisines</span>
-              </Link>
-            </div>
           </div>
 
           <p className="cuisine-desc">{entry.description}</p>
+
+          <div className="parent-nav-btns">
+            {parentEntry && (
+              <Link href={`/cuisines/${parentEntry.fullPath}`} className="parent-btn">
+                <span className="btn-icon">←</span>
+                <span>Back to {parentEntry.label}</span>
+              </Link>
+            )}
+            <Link href="/cuisines" className="root-btn">
+              <span>All Cuisines Overview</span>
+            </Link>
+          </div>
+        </div>
+
+        <div className="cuisine-hero-visual-col">
+          <div className="hero-visual-frame">
+            <Image
+              src={entry.image}
+              alt={entry.label}
+              fill
+              priority
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 900px) 100vw, 420px"
+              className="hero-visual-img"
+            />
+            <span className="hero-visual-pill">{entry.label} Heritage</span>
+          </div>
         </div>
       </div>
 
@@ -231,10 +256,10 @@ function CuisineDetail({ entry, slugPath }: { entry: CuisineEntry; slugPath: str
         <div className="sub-traditions-section">
           <div className="sub-traditions-header">
             <div>
-              <h2>Sub-Regional Traditions</h2>
-              <p className="sub-header-desc">Specialized regional practices and distinct culinary philosophies.</p>
+              <h2>Regional Classifications</h2>
+              <p className="sub-header-desc">Specialized regional practices, micro-climates, and distinct culinary philosophies.</p>
             </div>
-            <span className="active-count">{children.length} Active Classifications</span>
+            <span className="active-count">{children.length} Regional Traditions</span>
           </div>
 
           <div className="tradition-grid">
@@ -250,9 +275,8 @@ function CuisineDetail({ entry, slugPath }: { entry: CuisineEntry; slugPath: str
                       sizes="(max-width: 768px) 100vw, 360px"
                       className="tradition-card-img"
                     />
-                    <div className="tradition-card-overlay" />
                     <span className="recipe-count-badge">
-                      <span className="count-dot" /> {child.recipeCount} RECIPES
+                      <span className="count-dot" /> {child.recipeCount} Recipes
                     </span>
                     <span className="tradition-arrow">↗</span>
                   </div>
@@ -263,11 +287,9 @@ function CuisineDetail({ entry, slugPath }: { entry: CuisineEntry; slugPath: str
                     <p>{child.description}</p>
 
                     <div className="tradition-card-foot">
-                      {child.focus && (
-                        <span className="tradition-focus" title={child.focus}>
-                          {child.focus}
-                        </span>
-                      )}
+                      <span className="tradition-focus" title={child.focus || "Pantry & Technique"}>
+                        {child.focus || "Pantry & Technique"}
+                      </span>
                       <span className="explore-link">Explore →</span>
                     </div>
                   </div>
@@ -283,16 +305,16 @@ function CuisineDetail({ entry, slugPath }: { entry: CuisineEntry; slugPath: str
         <div className="featured-section">
           <div className="featured-section-header">
             <div>
-              <h2>Featured {entry.label} Formulas</h2>
-              <p>Calibrated kitchen entries tested for domestic stoves and consistent flavor balance.</p>
+              <h2>Featured {entry.label} Recipes</h2>
+              <p>Calibrated kitchen formulas tested for domestic stoves, high-heat sears, and balanced seasonings.</p>
             </div>
             <div className="featured-filter-pill">
-              <span>Sorted by: <strong>Foundational Technique</strong></span>
+              <span>Verified Kitchen Standards</span>
             </div>
           </div>
           <div className="featured-grid">
             {featured.slice(0, 3).map((r, i) => (
-              <FeaturedRecipeCard key={r.slug} recipe={r} label={featLabels[i] ?? "Feature"} />
+              <FeaturedRecipeCard key={r.slug} recipe={r} label={featLabels[i] ?? "Signature Dish"} />
             ))}
           </div>
         </div>
@@ -301,17 +323,16 @@ function CuisineDetail({ entry, slugPath }: { entry: CuisineEntry; slugPath: str
       {/* Pantry Standard / Culinary Reference */}
       {entry.pantryStandard && (
         <div className="pantry-box">
-          <div className="pantry-decor-icon">✦</div>
           <div className="pantry-box-inner">
             <div className="pantry-text-col">
-              <span className="pantry-label">{entry.pantryStandard.label}</span>
+              <span className="pantry-label">✦ {entry.pantryStandard.label}</span>
               <h3>{entry.pantryStandard.title}</h3>
               <p>{entry.pantryStandard.description}</p>
             </div>
-            <button className="pantry-btn">
-              <span>Read Pantry Guide</span>
+            <Link href="/recipes" className="pantry-btn">
+              <span>Browse Recipes</span>
               <span className="btn-arrow">→</span>
-            </button>
+            </Link>
           </div>
         </div>
       )}

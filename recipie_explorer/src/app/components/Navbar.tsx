@@ -31,7 +31,7 @@ export default function Navbar() {
         }>
           <NavLinks />
         </Suspense>
-        <Link href="#" className="btn-new">+ New Recipe</Link>
+        <Link href="/recipes/create" className="btn-new">+ New Recipe</Link>
       </div>
     </nav>
   );
