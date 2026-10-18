@@ -95,20 +95,36 @@ export const recipes: Recipe[] = [
     steps: ["Cook noodles. Rinse with cold water.", "Whisk tahini, soy, vinegar, garlic, chili oil.", "Toss noodles with sauce.", "Top with cucumber and sesame seeds.", "Serve immediately or chill 10 min."]
   },
   {
-    id: "REC-05",
+    id: "REC-042",
     slug: "vegetable-noodles",
     title: "Vegetable Noodles",
-    description: "Tender stir-fried ribbons with ginger-tamari glaze, scallions, and toasted sesame.",
-    image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&q=80",
+    description: "A quick weeknight stir-fry utilizing tender flat noodles, crisp julienned seasonal vegetables, and a balanced savory soy-sesame reduction.",
+    image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&q=80",
     cuisine: "Asian",
     difficulty: "Easy",
     time: 20,
     servings: 2,
-    yield: "2 servings",
+    yield: "2 portions",
     tags: ["Asian", "Easy"],
     categories: ["quick-meals"],
-    ingredients: ["200g rice noodles", "2 tbsp tamari", "1 tbsp sesame oil", "1 tsp fresh ginger", "2 scallions", "1 carrot, julienned", "1 cup bok choy", "Sesame seeds"],
-    steps: ["Cook noodles per package. Drain.", "Heat wok, add sesame oil and ginger.", "Stir-fry vegetables 3 mins.", "Add noodles and tamari, toss well.", "Garnish with scallions and sesame seeds."]
+    ingredients: [
+      "200g wheat noodles or soba",
+      "1 tbsp toasted sesame oil",
+      "1 small carrot, julienned",
+      "1 red bell pepper, thinly sliced",
+      "2 cups shredded savoy cabbage",
+      "2 scallions, diagonally sliced",
+      "2 tbsp low-sodium soy sauce",
+      "1 tbsp dark soy sauce",
+      "1 tsp grated ginger"
+    ],
+    steps: [
+      "Par-boil & oil noodles: Cook noodles in salted boiling water until al dente, drain and toss lightly with half the sesame oil.",
+      "Preheat wok: Heat a wide skillet or wok over medium-high heat with remaining oil until shimmering.",
+      "Flash aromatics and root vegetables: Add ginger, julienned carrot, and bell pepper; stir-fry briskly for 3 minutes until tender-crisp.",
+      "Incorporate greens & seasoning reduction: Fold in the shredded cabbage and noodles; pour in light and dark soy sauces.",
+      "Glaze reduction and finish: Toss continuously for 2 minutes to glaze evenly, finish with sliced scallions and remove from heat."
+    ]
   },
   {
     id: "REC-06",

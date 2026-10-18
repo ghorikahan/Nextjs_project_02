@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import { recipes, categories, Recipe } from "../../data/recipes";
 import { notFound } from "next/navigation";
+import RecipeDetailView from "../../components/RecipeDetailView";
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 const diffColor = (d: string) =>
@@ -41,52 +42,7 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
 
 // ── Recipe Detail ─────────────────────────────────────────────────────────────
 function RecipeDetail({ recipe }: { recipe: Recipe }) {
-  return (
-    <div className="detail-page">
-      <div className="breadcrumb">
-        <Link href="/">Home</Link> / <Link href="/recipes">Recipes</Link> / <span>{recipe.title}</span>
-      </div>
-      <div className="detail-hero">
-        <div className="detail-img-wrap">
-          <Image src={recipe.image} alt={recipe.title} fill style={{ objectFit: "cover" }} sizes="560px" />
-          <div className="detail-img-overlay" />
-        </div>
-        <div className="detail-info">
-          <div className="card-tags" style={{ marginBottom: 12 }}>
-            {recipe.tags.map(t => <span key={t} className="tag">{t}</span>)}
-          </div>
-          <h1>{recipe.title}</h1>
-          <p className="detail-desc">{recipe.description}</p>
-          <div className="detail-meta">
-            <div className="meta-item"><span className="meta-label">Prep Time</span><span className="meta-val">⏱ {recipe.time} mins</span></div>
-            <div className="meta-item"><span className="meta-label">Yield</span><span className="meta-val">🍽 {recipe.yield ?? `${recipe.servings} servings`}</span></div>
-            <div className="meta-item"><span className="meta-label">Difficulty</span><span className="meta-val" style={{ color: diffColor(recipe.difficulty) }}>● {recipe.difficulty}</span></div>
-            <div className="meta-item"><span className="meta-label">Cuisine</span><span className="meta-val">🌍 {recipe.cuisine}</span></div>
-          </div>
-          <span className="card-id" style={{ marginTop: 16, display: "block" }}>{recipe.id}</span>
-        </div>
-      </div>
-      <div className="detail-body">
-        <div className="detail-section">
-          <h2>Ingredients</h2>
-          <ul className="ingredients-list">
-            {recipe.ingredients.map((ing, i) => <li key={i}>{ing}</li>)}
-          </ul>
-        </div>
-        <div className="detail-section">
-          <h2>Instructions</h2>
-          <ol className="steps-list">
-            {recipe.steps.map((step, i) => (
-              <li key={i}><span className="step-num">{i + 1}</span><span>{step}</span></li>
-            ))}
-          </ol>
-        </div>
-      </div>
-      <div className="back-link-wrap">
-        <Link href="/recipes" className="back-link">← Back to all recipes</Link>
-      </div>
-    </div>
-  );
+  return <RecipeDetailView recipe={recipe} />;
 }
 
 // ── Catalog Page ──────────────────────────────────────────────────────────────
