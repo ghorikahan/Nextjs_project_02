@@ -177,18 +177,149 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); min-
 .view-link { font-size: 0.78rem; color: var(--accent); font-weight: 700; }
 .recipe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
 
+/* ── CUISINES PAGES (LUXURY EDITORIAL STYLING) ───────────────────────────── */
+.cuisine-page { max-width: 1140px; margin: 0 auto; padding: 32px 32px 90px; }
+
+/* Top Bar & Breadcrumb */
+.cuisine-top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(0, 0, 0, 0.07); flex-wrap: wrap; gap: 12px; }
+.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.84rem; flex-wrap: wrap; }
+.bc-item { display: inline-flex; align-items: center; gap: 8px; }
+.bc-home, .bc-link { color: #78716c; text-decoration: none; padding: 4px 8px; border-radius: 6px; transition: all 0.18s; font-weight: 500; }
+.bc-home:hover, .bc-link:hover { color: var(--accent); background: var(--accent-light); }
+.bc-sep { color: #d6d3d1; font-size: 0.8rem; }
+.bc-current { color: #1c1917; font-weight: 700; padding: 4px 10px; background: rgba(0, 0, 0, 0.05); border-radius: 6px; }
+
+/* Path Badge */
+.path-badge { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; border: 1px solid #e7e5e4; padding: 6px 14px; border-radius: 20px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04); font-size: 0.74rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 600; color: #44403c; }
+.badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.6); display: inline-block; }
+
+/* Hero Banner */
+.cuisine-hero-card { position: relative; border-radius: 20px; overflow: hidden; background: #1c1917; color: #ffffff; margin-bottom: 48px; box-shadow: 0 20px 40px -15px rgba(28, 25, 23, 0.22); min-height: 250px; display: flex; align-items: flex-end; border: 1px solid rgba(229, 226, 220, 0.2); }
+.cuisine-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+.hero-backdrop-img { filter: saturate(1.2) brightness(0.65); transition: transform 6s ease; }
+.cuisine-hero-backdrop-gradient { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20, 18, 16, 0.45) 0%, rgba(20, 18, 16, 0.75) 50%, rgba(15, 13, 12, 0.96) 100%); }
+
+.hero-content { position: relative; z-index: 2; padding: 40px 44px; width: 100%; }
+.domain-badge-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
+.domain-badge { font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #ff9485; background: rgba(192, 57, 43, 0.28); border: 1px solid rgba(255, 148, 133, 0.45); padding: 5px 14px; border-radius: 20px; backdrop-filter: blur(10px); }
+.formula-count { font-size: 0.8rem; color: #d6d3d1; font-weight: 500; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.18); padding: 5px 14px; border-radius: 20px; backdrop-filter: blur(10px); }
+.count-num { font-weight: 800; color: #ffffff; }
+
+.cuisine-title-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px; margin-bottom: 12px; }
+.cuisine-title-row h1, .hero-content h1 { font-size: 2.7rem; font-weight: 800; letter-spacing: -0.03em; color: #ffffff; line-height: 1.1; margin: 0; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35); }
+.parent-nav-btns { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.parent-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; color: #ffffff; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.3); padding: 8px 18px; border-radius: 30px; text-decoration: none; backdrop-filter: blur(10px); transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1); }
+.parent-btn:hover { background: #ffffff; color: #1c1917; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); }
+.btn-icon { font-size: 0.95rem; line-height: 1; }
+.root-btn { font-size: 0.78rem; font-weight: 600; color: #e7e5e4; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.22); padding: 8px 16px; border-radius: 30px; text-decoration: none; backdrop-filter: blur(8px); transition: all 0.22s; }
+.root-btn:hover { background: rgba(255, 255, 255, 0.25); color: #ffffff; transform: translateY(-2px); }
+
+.cuisine-desc { font-size: 1.05rem; line-height: 1.65; color: #e7e5e4; max-width: 820px; margin-top: 10px; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35); }
+
+/* Sub-Regional Traditions Section */
+.sub-traditions-section { margin-top: 48px; margin-bottom: 56px; }
+.sub-traditions-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; border-bottom: 1.5px solid #eae6df; padding-bottom: 14px; flex-wrap: wrap; gap: 12px; }
+.sub-traditions-header h2 { font-size: 1.45rem; font-weight: 800; color: #1c1917; letter-spacing: -0.02em; }
+.sub-header-desc { font-size: 0.84rem; color: #78716c; margin-top: 4px; }
+.active-count { font-size: 0.78rem; font-weight: 700; color: #57534e; background: #ece7e0; border: 1px solid #ded8cf; padding: 5px 14px; border-radius: 20px; }
+
+/* Tradition Cards Grid */
+.tradition-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(265px, 1fr)); gap: 24px; }
+.tradition-card-link { text-decoration: none; color: inherit; display: block; height: 100%; }
+.tradition-card { background: #ffffff; border: 1px solid #e7e3dc; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; height: 100%; transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 4px 14px rgba(28, 25, 23, 0.05); }
+.tradition-card:hover { transform: translateY(-6px); border-color: #d1c8bd; box-shadow: 0 20px 35px -10px rgba(28, 25, 23, 0.12); }
+
+.tradition-card-media { position: relative; height: 170px; width: 100%; overflow: hidden; background: #e8e3dc; }
+.tradition-card-img { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.tradition-card:hover .tradition-card-img { transform: scale(1.08); }
+.tradition-card-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.6) 100%); }
+
+.recipe-count-badge { position: absolute; bottom: 12px; left: 12px; display: inline-flex; align-items: center; gap: 6px; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.8px; color: #ffffff; background: rgba(20, 18, 16, 0.8); backdrop-filter: blur(8px); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2); }
+.count-dot { width: 5px; height: 5px; border-radius: 50%; background: #ff7666; }
+.tradition-arrow { position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(6px); color: #1c1917; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 800; transition: all 0.22s; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); }
+.tradition-card:hover .tradition-arrow { background: var(--accent); color: #ffffff; transform: translate(2px, -2px) scale(1.08); }
+
+.tradition-card-content { padding: 20px 22px 18px; display: flex; flex-direction: column; flex-grow: 1; }
+.tradition-domain-tag { font-size: 0.65rem; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.tradition-card-content h3 { font-size: 1.15rem; font-weight: 800; color: #1c1917; margin-bottom: 8px; line-height: 1.3; letter-spacing: -0.01em; }
+.tradition-card-content p { font-size: 0.83rem; color: #78716c; line-height: 1.55; margin-bottom: 16px; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+.tradition-card-foot { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f2ede6; padding-top: 14px; margin-top: auto; }
+.tradition-focus { font-size: 0.72rem; color: #57534e; background: #f5f2ec; padding: 3px 8px; border-radius: 4px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 60%; }
+.explore-link { font-size: 0.8rem; font-weight: 700; color: var(--accent); transition: transform 0.18s; margin-left: auto; }
+.tradition-card:hover .explore-link { transform: translateX(4px); }
+
+/* Featured Formulas Section */
+.featured-section { margin-top: 56px; }
+.featured-section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; border-bottom: 1.5px solid #eae6df; padding-bottom: 14px; flex-wrap: wrap; gap: 12px; }
+.featured-section-header h2 { font-size: 1.45rem; font-weight: 800; color: #1c1917; letter-spacing: -0.02em; }
+.featured-section-header p { font-size: 0.84rem; color: #78716c; margin-top: 4px; }
+.featured-filter-pill { font-size: 0.78rem; color: #57534e; background: #ece7e0; border: 1px solid #ded8cf; padding: 5px 14px; border-radius: 20px; }
+
+.featured-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 26px; }
+.feat-card-link { text-decoration: none; color: inherit; display: block; height: 100%; }
+.feat-card { background: #ffffff; border: 1px solid #e7e3dc; border-radius: 18px; overflow: hidden; transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 4px 16px rgba(28, 25, 23, 0.06); display: flex; flex-direction: column; height: 100%; }
+.feat-card:hover { transform: translateY(-6px); border-color: #d1c8bd; box-shadow: 0 24px 44px -12px rgba(28, 25, 23, 0.15); }
+
+.feat-card-img { position: relative; height: 220px; width: 100%; background: #e8e3dc; overflow: hidden; }
+.feat-img { transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+.feat-card:hover .feat-img { transform: scale(1.08); }
+.feat-card-img-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.55) 100%); }
+
+.feat-card-tag { position: absolute; top: 12px; left: 12px; background: rgba(20, 18, 16, 0.85); backdrop-filter: blur(8px); color: #ffffff; font-size: 0.68rem; font-weight: 800; padding: 4px 11px; border-radius: 20px; letter-spacing: 0.6px; text-transform: uppercase; border: 1px solid rgba(255, 255, 255, 0.2); }
+.feat-card-difficulty { position: absolute; top: 12px; right: 12px; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(8px); color: #1c1917; font-size: 0.68rem; font-weight: 800; padding: 4px 11px; border-radius: 20px; letter-spacing: 0.5px; }
+
+.feat-card-body { padding: 22px 22px 20px; display: flex; flex-direction: column; flex-grow: 1; }
+.feat-card-meta { font-size: 0.72rem; font-weight: 800; color: var(--accent); letter-spacing: 0.8px; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.meta-divider { color: #d6d3d1; }
+.feat-time { color: #78716c; font-weight: 700; }
+.feat-card-body h3 { font-size: 1.15rem; font-weight: 800; color: #1c1917; margin-bottom: 8px; line-height: 1.35; letter-spacing: -0.01em; }
+.feat-card-body p { font-size: 0.84rem; color: #78716c; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 18px; flex-grow: 1; }
+
+.feat-card-foot { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f2ede6; padding-top: 14px; margin-top: auto; }
+.feat-card-stats { display: flex; gap: 14px; font-size: 0.78rem; font-weight: 600; color: #78716c; }
+.feat-view { font-size: 0.82rem; font-weight: 800; color: var(--accent); transition: transform 0.18s; }
+.feat-card:hover .feat-view { transform: translateX(4px); }
+
+/* Pantry Box / Culinary Reference Callout */
+.pantry-box { margin-top: 64px; background: linear-gradient(135deg, #1c1917 0%, #292524 100%); border-radius: 20px; padding: 34px 40px; position: relative; overflow: hidden; color: #ffffff; box-shadow: 0 20px 45px -12px rgba(28, 25, 23, 0.28); border: 1px solid rgba(217, 119, 6, 0.3); }
+.pantry-decor-icon { position: absolute; right: 28px; top: 14px; font-size: 3.5rem; color: rgba(217, 119, 6, 0.15); pointer-events: none; line-height: 1; }
+.pantry-box::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: linear-gradient(180deg, #f59e0b 0%, #c0392b 100%); }
+.pantry-box-inner { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; position: relative; z-index: 2; }
+.pantry-text-col { max-width: 720px; }
+.pantry-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: #f59e0b; display: inline-block; margin-bottom: 8px; }
+.pantry-box h3 { font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 10px; letter-spacing: -0.015em; }
+.pantry-box p { font-size: 0.9rem; color: #d6d3d1; line-height: 1.65; margin: 0; }
+.pantry-btn { display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #1c1917; padding: 12px 24px; border-radius: 30px; font-weight: 700; font-size: 0.88rem; border: none; cursor: pointer; white-space: nowrap; transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); font-family: var(--font); }
+.pantry-btn:hover { background: #f59e0b; color: #1c1917; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35); }
+.btn-arrow { transition: transform 0.18s; }
+.pantry-btn:hover .btn-arrow { transform: translateX(4px); }
+
+.cuisine-page-loading { padding: 80px 32px; text-align: center; color: var(--muted); font-weight: 600; font-size: 0.95rem; }
+
 /* ── RESPONSIVE ───────────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .cat-grid { grid-template-columns: repeat(2, 1fr); }
   .detail-hero { grid-template-columns: 1fr; }
   .detail-body { grid-template-columns: 1fr; }
   .detail-img-wrap { height: 280px; }
+  .cuisine-title-row h1, .hero-content h1 { font-size: 2.1rem; }
+  .hero-content { padding: 32px 28px; }
+  .tradition-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .cat-grid { grid-template-columns: 1fr; }
-  .catalog-page, .detail-page { padding: 24px 16px 60px; }
+  .catalog-page, .detail-page, .cuisine-page { padding: 20px 16px 60px; }
   .nav-inner { padding: 0 16px; gap: 16px; }
   .cat-tabs { gap: 4px; }
   .cat-tab { font-size: 0.78rem; padding: 5px 11px; }
   .routing-hint-box { flex-direction: column; align-items: flex-start; }
+  .cuisine-title-row { flex-direction: column; align-items: flex-start; }
+  .hero-content { padding: 24px 20px; }
+  .cuisine-title-row h1, .hero-content h1 { font-size: 1.8rem; }
+  .tradition-grid, .featured-grid { grid-template-columns: 1fr; }
+  .pantry-box { padding: 24px 22px; }
+  .pantry-box-inner { flex-direction: column; align-items: flex-start; }
 }
+
+

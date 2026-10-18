@@ -8,7 +8,7 @@ function NavLinks() {
   return (
     <div className="nav-links">
       <Link href="/recipes" className={path.startsWith("/recipes") ? "nav-link active" : "nav-link"}>Recipes</Link>
-      <Link href="#" className="nav-link">Cuisines</Link>
+      <Link href="/cuisines" className={path.startsWith("/cuisines") ? "nav-link active" : "nav-link"}>Cuisines</Link>
       <Link href="#" className="nav-link">About</Link>
     </div>
   );
@@ -25,7 +25,7 @@ export default function Navbar() {
         <Suspense fallback={
           <div className="nav-links">
             <Link href="/recipes" className="nav-link">Recipes</Link>
-            <Link href="#" className="nav-link">Cuisines</Link>
+            <Link href="/cuisines" className="nav-link">Cuisines</Link>
             <Link href="#" className="nav-link">About</Link>
           </div>
         }>
